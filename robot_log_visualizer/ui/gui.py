@@ -198,8 +198,10 @@ class RobotViewerMainWindow(QtWidgets.QMainWindow):
         self.ui.timeSlider.sliderPressed.connect(self.timeSlider_on_pressed)
         self.ui.timeSlider.sliderMoved.connect(self.timeSlider_on_sliderMoved)
 
-        self.ui.variableTreeWidget.itemClicked.connect(self.variableTreeWidget_on_click)
-        self.ui.yarpTextLogTreeWidget.itemClicked.connect(
+        self.ui.variableTreeWidget.itemSelectionChanged.connect(
+            self.variableTreeWidget_on_click
+        )
+        self.ui.yarpTextLogTreeWidget.itemSelectionChanged.connect(
             self.textLogTreeWidget_on_click
         )
 
