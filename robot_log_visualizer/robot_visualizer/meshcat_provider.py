@@ -2,17 +2,15 @@
 # This software may be modified and distributed under the terms of the
 # Released under the terms of the BSD 3-Clause License
 
-from PyQt5.QtCore import QThread, QMutex, QMutexLocker
-
 import os
 import re
+import time
 from pathlib import Path
 
-import numpy as np
-import time
-
 import idyntree.swig as idyn
+import numpy as np
 from idyntree.visualize import MeshcatVisualizer
+from PyQt5.QtCore import QMutex, QMutexLocker, QThread
 
 from robot_log_visualizer.utils.utils import PeriodicThreadState
 
@@ -120,7 +118,7 @@ class MeshcatProvider(QThread):
                 self.custom_model_path,
                 considered_model_joints,
                 "urdf",
-                [self.custom_package_dir],
+                [self.custom_package_dir] if self.custom_package_dir is not "" else [],
             )
         else:
             # Attempt to find the model in the envs folders
